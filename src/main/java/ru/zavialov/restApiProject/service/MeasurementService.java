@@ -22,7 +22,7 @@ public class MeasurementService {
 		this.measurementRepository = measurementRepository;
 	}
 
-	public List<Measurement> getMeasurements() {
+	public List<Measurement> findAll() {
 		return measurementRepository.findAll();
 	}
 

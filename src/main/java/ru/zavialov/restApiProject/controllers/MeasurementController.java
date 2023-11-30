@@ -21,6 +21,7 @@ import ru.zavialov.restApiProject.dto.MeasurementDto;
 import ru.zavialov.restApiProject.models.Measurement;
 import ru.zavialov.restApiProject.models.Sensor;
 import ru.zavialov.restApiProject.service.MeasurementService;
+import ru.zavialov.restApiProject.service.SensorService;
 import ru.zavialov.restApiProject.util.CreateException;
 import ru.zavialov.restApiProject.util.ResponseError;
 
@@ -28,16 +29,18 @@ import ru.zavialov.restApiProject.util.ResponseError;
 @RestController
 public class MeasurementController {
 	private final MeasurementService measurementService;
+	private final SensorService sensorService;
 
 	@Autowired
-	public MeasurementController(MeasurementService measurementService) {
+	public MeasurementController(MeasurementService measurementService, SensorService sensorService) {
 		super();
 		this.measurementService = measurementService;
+		this.sensorService = sensorService;
 	}
 
-	@GetMapping()
-	public List<Measurement> getMeasurements() {
-		return measurementService.getMeasurements();
+	@GetMapping("/all")
+	public List<Measurement> findAll() {
+		return measurementService.findAll();
 	}
 	
 	@PostMapping("/add")
@@ -56,6 +59,11 @@ public class MeasurementController {
 			throw new CreateException(msg.toString());
 			*/
 		}
+		
+		Sensor dbSensor = sensorService.findByName(measurement.getSensor().getName());
+		
+		
+		measurement.getSensor().setId(dbSensor.getId());
 		
 		measurementService.createMeasurment(measurement);
 		return ResponseEntity.ok(HttpStatus.OK);

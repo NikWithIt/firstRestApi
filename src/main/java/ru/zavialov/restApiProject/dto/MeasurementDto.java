@@ -18,7 +18,7 @@ public class MeasurementDto {
 	private boolean raining;
 	
 	@NotNull(message = "Warning! System can't find sensor")
-	private Sensor sensorDtO;
+	private String sensorDtO;
 
 	public int getValue() {
 		return value;
@@ -36,7 +36,7 @@ public class MeasurementDto {
 		this.raining = raining;
 	}
 
-	public Sensor getSensor() {
+	public String getSensor() {
 		return sensorDtO;
 	}
 
