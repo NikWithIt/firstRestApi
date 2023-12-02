@@ -28,13 +28,11 @@ import ru.zavialov.restApiProject.util.ResponseError;
 @RequestMapping("/sensors")
 public class SensorController {
 	private SensorService sensorService;
-	private MeasurementService measurementService;
 	
 	@Autowired
-	public SensorController(SensorService sensorService, MeasurementService measurementService) {
+	public SensorController(SensorService sensorService) {
 		super();
 		this.sensorService = sensorService;
-		this.measurementService = measurementService;
 	}
 	
 	@PostMapping()

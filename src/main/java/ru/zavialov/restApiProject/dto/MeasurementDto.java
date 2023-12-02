@@ -1,6 +1,5 @@
 package ru.zavialov.restApiProject.dto;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
@@ -18,7 +17,7 @@ public class MeasurementDto {
 	private boolean raining;
 	
 	@NotNull(message = "Warning! System can't find sensor")
-	private String sensorDtO;
+	private SensorDto sensorDto;
 
 	public int getValue() {
 		return value;
@@ -36,13 +35,16 @@ public class MeasurementDto {
 		this.raining = raining;
 	}
 
-	public String getSensor() {
-		return sensorDtO;
+	public SensorDto getSensorDto() {
+		return sensorDto;
 	}
 
-	public void setSensor(SensorDto sensorDto) {
-		this.sensorDtO = sensorDtO;
+	public void setSensorDto(SensorDto sensorDto) {
+		this.sensorDto = sensorDto;
 	}
+
+
+
 	
 	
 	
